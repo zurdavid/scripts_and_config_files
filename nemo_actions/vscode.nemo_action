@@ -1,0 +1,7 @@
+[Nemo Action]
+Active=true
+Name=VS Code
+Comment=Open with VS Code
+Exec=code %F
+Selection=none
+Extensions=any
