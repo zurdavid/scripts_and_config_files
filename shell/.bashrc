@@ -289,10 +289,18 @@ bash_prompt() {
 	############################################################################
 	
 	## CONFIGURATION: BLUE-WHITE
-	if [ "$HOSTNAME" = chronos984 ]; then
+	if [ "$HOSTNAME" = mintdesk-784__ ]; then
 		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLUE; TEXTEFFECT_1=$BOLD
 		FONT_COLOR_2=$WHITE; BACKGROUND_2=$L_BLUE; TEXTEFFECT_2=$BOLD	
 		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$WHITE; TEXTEFFECT_3=$BOLD	
+		PROMT_FORMAT=$WHITE_BOLD
+	fi
+
+    ## CONFIGURATION: BLUE-CYAN
+	if [ "$HOSTNAME" = mintdesk-784 ]; then
+		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLUE; TEXTEFFECT_1=$BOLD
+		FONT_COLOR_2=$WHITE; BACKGROUND_2=$CYAN; TEXTEFFECT_2=$BOLD	
+		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$L_BLUE; TEXTEFFECT_3=$BOLD	
 		PROMT_FORMAT=$WHITE_BOLD
 	fi
 	
@@ -311,8 +319,8 @@ bash_prompt() {
 	#PROMT_FORMAT=$RED_BOLD
 
 	## CONFIGURATION: CYAN-BLUE
-	if [ "$HOSTNAME" = sharkoon ]; then
-		FONT_COLOR_1=$BLACK; BACKGROUND_1=$L_CYAN; TEXTEFFECT_1=$BOLD
+	if [ "$HOSTNAME" = mintdesk-784_olde ]; then
+		FONT_COLOR_1=$BLACK; BACKGROUND_1=$CYAN; TEXTEFFECT_1=$BOLD
 		FONT_COLOR_2=$WHITE; BACKGROUND_2=$L_BLUE; TEXTEFFECT_2=$BOLD
 		FONT_COLOR_3=$WHITE; BACKGROUND_3=$BLUE; TEXTEFFECT_3=$BOLD
 		PROMT_FORMAT=$CYAN_BOLD
@@ -327,7 +335,7 @@ bash_prompt() {
 	fi
 	
 	## CONFIGURATION: GRAY-CYAN
-	if [ "$HOSTNAME" = light ]; then
+	if [ "$HOSTNAME" = mintdesk-784_ ]; then
 		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
 		FONT_COLOR_2=$WHITE; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD
 		FONT_COLOR_3=$BLACK; BACKGROUND_3=$L_CYAN; TEXTEFFECT_3=$BOLD
@@ -468,3 +476,32 @@ unset bash_prompt
 
 ### EOF ###
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/david/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/david/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/david/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+#
+alias activate='conda activate'
+alias ds='conda activate ds'
+alias xclip='xclip -selection clipboard'
+
+# gcc 10
+export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
