@@ -3,13 +3,11 @@ autoload -U colors && colors
 
 autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
-zstyle ':vcs_info:*' formats ' %s(%b)'
+zstyle ':vcs_info:*' formats ' :%F{red} %b%f'
 
-# Store local dir
-NEW_PWD=${PWD/#$HOME/\~}
-
+setopt prompt_subst
 NEWLINE=$'\n'
-PROMPT="${NEWLINE}%n@%m %F{red}%~%f $vcs_info_msg_0_ ${NEWLINE}%B%F{red} ~>%f%b "
+PROMPT='${NEWLINE}%n@%m %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE}%B%F{12} ~>%f%b '
 
 # Lines configured by zsh-newuser-install
 unsetopt beep
