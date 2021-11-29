@@ -30,3 +30,54 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# key bindings
+bindkey -M viins 'jk' vi-cmd-mode
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+# Use beam shape cursor for each new prompt.
+_fix_cursor() {
+   echo -ne '\e[5 q'
+}
+
+precmd_functions+=(_fix_cursor)
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/david/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/david/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/david/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+#
+alias activate='conda activate'
+alias ds='conda activate ds'
+alias xclip='xclip -selection clipboard'
+
+# gcc 10
+export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
