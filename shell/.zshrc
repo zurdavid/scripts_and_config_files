@@ -3,11 +3,18 @@ autoload -U colors && colors
 
 autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
-zstyle ':vcs_info:*' formats ' :%F{red} %b%f'
+zstyle ':vcs_info:*' formats ' %F{4}:%f%F{red} %b%f'
+
+FLAME=$'\uE0C0'
+LEGO=$'\uE0CF'
 
 setopt prompt_subst
 NEWLINE=$'\n'
-PROMPT='${NEWLINE}%n@%m %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE}%B%F{12} ~>%f%b '
+PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${FLAME}%f  %m %k%F{12}${FLAME}%f  "
+#PROMPT_NAME='%n@%m'
+PPROMPT="%F{12} ${LEGO}%f  " 
+#PPROMPT='%B%F{12} ~>%f%b' 
+PROMPT='${NEWLINE}$PROMPT_NAME %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
 # Lines configured by zsh-newuser-install
 unsetopt beep
