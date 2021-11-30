@@ -5,16 +5,31 @@ autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
 zstyle ':vcs_info:*' formats ' %F{4}:%f%F{red} %b%f'
 
-FLAME=$'\uE0C0'
+function check_conda() {
+  if [[ -v CONDA_DEFAULT_ENV ]]; then
+    CONDAPROMPT="(%F{4}${PYTHON}%f ${CONDA_DEFAULT_ENV})"
+  else
+    unset CONDAPROMPT
+  fi
+}
+precmd_functions+=(check_conda)
+
+SEP1=$'\uE0C0'
 LEGO=$'\uE0CF'
+PYTHON=$'\uE235'
+MINT=$'\uF30E'
+NEWLINE=$'\n'
 
 setopt prompt_subst
-NEWLINE=$'\n'
-PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${FLAME}%f  %m %k%F{12}${FLAME}%f  "
-#PROMPT_NAME='%n@%m'
-PPROMPT="%F{12} ${LEGO}%f  " 
-#PPROMPT='%B%F{12} ~>%f%b' 
-PROMPT='${NEWLINE}$PROMPT_NAME %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
+#SIMPLE_PROMPT=true
+if [[ -v SIMPLE_PROMPT ]];then
+  PROMPT_NAME='%n@%m'
+  PPROMPT='%B%F{12} ~>%f%b ' 
+else
+  PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${SEP1}%f  $MINT  %k%F{12}${SEP1}%f "
+  PPROMPT="%F{12} ${LEGO}%f  " 
+fi
+PROMPT='${NEWLINE}$PROMPT_NAME $CONDAPROMPT %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
 # Lines configured by zsh-newuser-install
 unsetopt beep
@@ -67,7 +82,7 @@ precmd_functions+=(_fix_cursor)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -79,6 +94,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+# ahj - remove the default Python environment artifact "(base)" from prompt
+PS1=$(echo "$PS1" | perl -pe 's/^\(base\)\s*//' )
 
 #
 alias activate='conda activate'
