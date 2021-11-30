@@ -23,4 +23,3 @@ set background=dark
 " highlight LineNr guibg=NONE ctermbg=NONE
 " highlight SignColumn guibg=NONE ctermbg=NONE
 
-

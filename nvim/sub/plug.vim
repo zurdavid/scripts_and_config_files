@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+" color schemes
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 " status / tabline
@@ -15,9 +16,20 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
 
+" Language server
+Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+" Highlight
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" fuzzy search
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Plug 'jackguo380/vim-lsp-cxx-highlight'
 " markdown
 Plug 'plasticboy/vim-markdown'
 " Julia
@@ -31,5 +43,4 @@ Plug 'lervag/vimtex'
 " Plug 'kien/rainbow_parentheses.vim'
 " Plug 'ervandew/supertab'
 call plug#end()
-
 

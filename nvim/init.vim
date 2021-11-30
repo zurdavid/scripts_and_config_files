@@ -4,9 +4,10 @@
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 ":endif
 
-source $HOME/.config/nvim/sub/plug.vim      " plugin loader
-source $HOME/.config/nvim/sub/theme.vim     " theme 
-source $HOME/.config/nvim/sub/functions.vim  " custom functions 
+source $HOME/.config/nvim/sub/plug.vim          " plugin loader
+source $HOME/.config/nvim/sub/theme.vim         " theme 
+source $HOME/.config/nvim/sub/functions.vim     " custom functions 
+source $HOME/.config/nvim/sub/plugins.vim       " plugin settings 
 
 syntax on
 filetype plugin indent on
@@ -50,11 +51,19 @@ map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vl :VimuxRunLastCommand<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
-
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let maplocalleader = ","
+nnoremap <leader>si :source $MYVIMRC<CR>
+" Resize buffer
+nnoremap <silent> <C-Down> :resize +1<CR>
+nnoremap <silent> <C-Up> :resize -1<CR>
+nnoremap <silent> <C-Right> :vertical resize +1<CR>
+nnoremap <silent> <C-Left> :vertical resize -1<CR>
 
 " actions when saving
 " remove trailing whitespace
-autocmd FileType c,cpp,java,tex,jl,hs autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,tex,julia,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " vimtex
 let g:vimtex_view_method = 'zathura'
@@ -77,7 +86,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -89,3 +99,12 @@ endfunction
 
 " imap <F6> <Esc>:w<CR>:!python3 %<CR>
 " nmap <F6> :w<CR>:!python3 %<CR>
+
+lua << EOF
+require("lspconfig").julials.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+vim.lsp.set_log_level("debug")
+
+EOF
+
+
