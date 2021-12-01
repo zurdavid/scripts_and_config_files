@@ -60,6 +60,8 @@ inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 " next buffer
 nnoremap bn :bNext<CR>
+nnoremap <Leader>pu :tabnext<CR>
+nnoremap <Leader>pd :tabprevious<CR>
 " source init.vim
 nnoremap <leader>si :source $MYVIMRC<CR>
 " remove highlight
