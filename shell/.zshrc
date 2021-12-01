@@ -1,6 +1,8 @@
 #Enable colors
 autoload -U colors && colors
 
+export EDITOR=nvim
+
 autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
 zstyle ':vcs_info:*' formats ' %F{4}:%f%F{red} %b%f'
@@ -97,10 +99,12 @@ unset __conda_setup
 # ahj - remove the default Python environment artifact "(base)" from prompt
 PS1=$(echo "$PS1" | perl -pe 's/^\(base\)\s*//' )
 
-#
+# ALIASES
 alias activate='conda activate'
 alias ds='conda activate ds'
 alias xclip='xclip -selection clipboard'
+alias gls='git status'
+alias sz='source ~/.zshrc'  
 
 # gcc 10
 export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
