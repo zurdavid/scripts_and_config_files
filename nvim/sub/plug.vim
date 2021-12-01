@@ -29,6 +29,12 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" other (tpope vim-plug artist)
+" Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-commentary'
+" Plug 'preservim/nerdtree'
+
 " Plug 'jackguo380/vim-lsp-cxx-highlight'
 " markdown
 Plug 'plasticboy/vim-markdown'

@@ -15,14 +15,26 @@ filetype plugin indent on
 set expandtab
 set shiftwidth=2
 set number
-set signcolumn=yes "column with signs for git / errors
+set signcolumn=yes                              "column with signs for git / errors
 
 set noswapfile
 set undodir=~/.nvim/undodir
 set undofile
 
-" copy/past to/from clipboard
-set clipboard=unnamedplus
+set ignorecase                                  " needed by j
+set smartcase                                   " ignore lower case when searching
+
+set clipboard=unnamedplus                       " copy/past to/from clipboard
+
+
+" FILE BROWSER
+let g:netrw_banner=0                             " disable banner
+let g:netrw_browse_split=4                      " open in prior window
+let g:netrw_preview=1
+let g:netrw_altv=1                               " open splits to the right
+let g:netrw_winsize=85                           " size of new window in percent
+let g:netrw_liststyle=3                          " tree view
+"let g:netrw_list_hide=                          " hide stuff
 
 " spell checking
 set nospell spelllang=de_de
@@ -31,6 +43,7 @@ inoremap <silent> <F6> <C-O>:set invspell<cr>
 "set spell spelllang=de_de,en_us
 "set spellcapcheck=""
 
+" fuzzy finding
 set path=$PWD/**
 
 let g:ycm_confirm_extra_conf = 0
@@ -41,61 +54,29 @@ let g:vim_markdown_folding_disabled = 1
 set updatetime=300
 
 " key mappings
-let mapleader = "," " map leader to comma
+nnoremap <SPACE> <Nop>
+let mapleader = " " " map leader to comma
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
-" vimux
-" Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-" Zoom the tmux runner pane
-map <Leader>vz :VimuxZoomRunner<CR>
-" Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
-let maplocalleader = ","
+" next buffer
+nnoremap bn :bNext<CR>
+" source init.vim
 nnoremap <leader>si :source $MYVIMRC<CR>
+" remove highlight
+map <leader>h :noh<CR>
 " Resize buffer
 nnoremap <silent> <C-Down> :resize +1<CR>
 nnoremap <silent> <C-Up> :resize -1<CR>
 nnoremap <silent> <C-Right> :vertical resize +1<CR>
 nnoremap <silent> <C-Left> :vertical resize -1<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " actions when saving
 " remove trailing whitespace
 autocmd FileType c,cpp,java,tex,julia,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" vimtex
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_compiler_latexmk = {'build_dir': 'out'}
-
 " python
 let g:python3_host_prog = '~/miniconda3/bin/python'
-
-inoremap <expr> <Tiab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> üc <Plug>(coc-diagnostic-prev)
-nmap <silent> ¨c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 " imap <F6> <Esc>:w<CR>:!python3 %<CR>
 " nmap <F6> :w<CR>:!python3 %<CR>
