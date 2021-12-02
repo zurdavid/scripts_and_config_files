@@ -151,3 +151,6 @@ alias sz='source ~/.zshrc'
 # gcc 10
 export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+
+# source autojump
+source /usr/share/autojump/autojump.zsh 2>/dev/null
