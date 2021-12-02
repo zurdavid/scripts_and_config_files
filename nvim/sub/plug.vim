@@ -5,6 +5,11 @@ Plug 'tomasiser/vim-code-dark'
 " status / tabline
 Plug 'vim-airline/vim-airline'
 
+" helpers
+Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/vim-pencil'
+Plug 'preservim/nerdcommenter'
+
 " tmux
 Plug 'preservim/vimux'
 Plug 'christoomey/vim-tmux-navigator'
@@ -12,8 +17,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 
-" git wrapper
-Plug 'tpope/vim-fugitive' 
+" git 
+" Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
 
 " Language server

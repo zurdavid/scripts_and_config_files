@@ -1,10 +1,21 @@
+" NERDComments
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1 
+
+
 " ALE - linter
-nnoremap <silent> <Leader>ad :ALEDetail<cr>
+nmap <silent> <Leader>ad <Plug>(ale_detail) 
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
+"let g:ale_list_window_size = 5
+let g:ale_hover_to_floating_preview=1
+" only lint on save
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_enter = 0 " disable on opening
 
 
-" Treesitter
+" TREESITTER
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -86,5 +97,4 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
 

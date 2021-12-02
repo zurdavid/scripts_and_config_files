@@ -16,6 +16,7 @@ set expandtab
 set shiftwidth=2
 set number
 set signcolumn=yes                              "column with signs for git / errors
+set scrolloff=7
 
 set noswapfile
 set undodir=~/.nvim/undodir
