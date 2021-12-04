@@ -21,6 +21,7 @@ SEP1=$'\uE0C0'
 LEGO=$'\uE0CF'
 PYTHON=$'\uE235'
 MINT=$'\uF30E'
+FOLDER=$'\uE5FE'
 NEWLINE=$'\n'
 
 # PROMPT
@@ -33,7 +34,7 @@ else
   PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${SEP1}%f  $MINT  %k%F{12}${SEP1}%f "
   PPROMPT="%F{12} ${LEGO}%f  " 
 fi
-PROMPT='${NEWLINE}$PROMPT_NAME $CONDAPROMPT %F{6}%~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
+PROMPT='${NEWLINE}$PROMPT_NAME $CONDAPROMPT %F{6}$FOLDER %~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
 # Lines configured by zsh-newuser-install
 unsetopt beep
