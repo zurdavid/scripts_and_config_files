@@ -49,7 +49,10 @@ zstyle ':completion:*' menu select
 compinit
 # End of lines added by compinstall
 autoload -U +X bashcompinit && bashcompinit
-eval "$(stack --bash-completion-script stack)"
+# stack autocomplete
+if command -v stack &> /dev/null; then
+  eval "$(stack --bash-completion-script stack)"
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
