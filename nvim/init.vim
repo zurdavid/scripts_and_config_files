@@ -73,6 +73,9 @@ nnoremap <silent> <C-Up> :resize -1<CR>
 nnoremap <silent> <C-Right> :vertical resize +1<CR>
 nnoremap <silent> <C-Left> :vertical resize -1<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
+" invoke formatter
+nnoremap <Leader><C-I> ggvG3gq<C-o>
+nnoremap <Leader><C-a> ggvG
 
 " actions when saving
 " remove trailing whitespace
