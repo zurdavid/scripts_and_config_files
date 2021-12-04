@@ -26,7 +26,7 @@ set ignorecase                                  " needed by j
 set smartcase                                   " ignore lower case when searching
 
 set clipboard=unnamedplus                       " copy/past to/from clipboard
-
+" set wildmenu
 
 " FILE BROWSER
 let g:netrw_banner=0                             " disable banner

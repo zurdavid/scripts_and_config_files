@@ -23,13 +23,13 @@ Plug 'airblade/vim-gitgutter'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
-Plug 'tami5/lspsaga.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " fuzzy search
+" telescope live_grep requires ripgrep 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
