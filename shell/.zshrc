@@ -42,9 +42,14 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/david/.zshrc'
 
-autoload -Uz compinit
+autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+# stack autocomplete
 compinit
 # End of lines added by compinstall
+autoload -U +X bashcompinit && bashcompinit
+eval "$(stack --bash-completion-script stack)"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -147,6 +152,7 @@ alias ds='conda activate ds'
 alias xclip='xclip -selection clipboard'
 alias gls='git status'
 alias sz='source ~/.zshrc'  
+alias gitgraph="git log --graph --decorate --all --oneline"
 
 # gcc 10
 export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
