@@ -2,8 +2,10 @@
 # neovim
 rm -f -- $HOME/.config/nvim/init.vim
 rm -rf $HOME/.config/nvim/sub
+rm -rf $HOME/.config/nvim/ftplugin
 ln -s $(pwd)/nvim/init.vim $HOME/.config/nvim
 ln -s $(pwd)/nvim/sub $HOME/.config/nvim
+ln -s $(pwd)/nvim/ftplugin $HOME/.config/nvim
 
 rm -f -- $HOME/.bashrc
 rm -f -- $HOME/.inputrc
