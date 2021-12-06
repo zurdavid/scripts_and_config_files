@@ -6,7 +6,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 
 " helpers
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
 
@@ -23,7 +23,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
