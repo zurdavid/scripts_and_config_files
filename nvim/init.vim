@@ -3,11 +3,23 @@
 "    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 ":endif
+if exists('g:vscode')
+  " finish
+else
+  source $HOME/.config/nvim/sub/plug.vim          " plugin loader
+  source $HOME/.config/nvim/sub/theme.vim         " theme 
+  source $HOME/.config/nvim/sub/functions.vim     " custom functions 
+  source $HOME/.config/nvim/sub/plugins.vim       " plugin settings 
 
-source $HOME/.config/nvim/sub/plug.vim          " plugin loader
-source $HOME/.config/nvim/sub/theme.vim         " theme 
-source $HOME/.config/nvim/sub/functions.vim     " custom functions 
-source $HOME/.config/nvim/sub/plugins.vim       " plugin settings 
+  " FILE BROWSER
+  let g:netrw_banner=0                             " disable banner
+  let g:netrw_browse_split=4                      " open in prior window
+  let g:netrw_preview=1
+  let g:netrw_altv=1                               " open splits to the right
+  let g:netrw_winsize=85                           " size of new window in percent
+  let g:netrw_liststyle=3                          " tree view
+  "let g:netrw_list_hide=                          " hide stuff
+endif
 
 syntax on
 filetype plugin indent on
@@ -27,15 +39,6 @@ set smartcase                                   " ignore lower case when searchi
 
 set clipboard=unnamedplus                       " copy/past to/from clipboard
 " set wildmenu
-
-" FILE BROWSER
-let g:netrw_banner=0                             " disable banner
-let g:netrw_browse_split=4                      " open in prior window
-let g:netrw_preview=1
-let g:netrw_altv=1                               " open splits to the right
-let g:netrw_winsize=85                           " size of new window in percent
-let g:netrw_liststyle=3                          " tree view
-"let g:netrw_list_hide=                          " hide stuff
 
 " spell checking
 set nospell spelllang=de_de
@@ -59,8 +62,18 @@ nnoremap <SPACE> <Nop>
 let mapleader = " " " map leader to comma
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
+" leave vmode
+vnoremap <Leader><Leader> <Esc>
+" indent
+map <Tab> >
+imap <Tab> <Esc> >
+vmap <Tab> >gv
+map <S-Tab> <
+imap <S-Tab> <Esc> <
+vmap <S-Tab> <gv
 " next buffer
 nnoremap bn :bNext<CR>
+nnoremap bp :bprevious<CR>
 nnoremap <Leader>pu :tabnext<CR>
 nnoremap <Leader>pd :tabprevious<CR>
 " source init.vim
@@ -87,11 +100,12 @@ let g:python3_host_prog = '~/miniconda3/bin/python'
 " imap <F6> <Esc>:w<CR>:!python3 %<CR>
 " nmap <F6> :w<CR>:!python3 %<CR>
 
-lua << EOF
-require("lspconfig").julials.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-vim.lsp.set_log_level("debug")
+" lua << EOF
+" require("lspconfig").julials.setup{}
+" require'lspconfig'.rust_analyzer.setup{}
+" require'lspconfig'.hls.setup{}
+" vim.lsp.set_log_level("debug")
 
-EOF
+" EOF
 
 
