@@ -157,10 +157,13 @@ alias xclip='xclip -selection clipboard'
 alias gls='git status'
 alias sz='source ~/.zshrc'  
 alias gitgraph="git log --graph --decorate --all --oneline"
+alias vim=nvim
+alias bajulia='julia --project -t auto --sysimage=precompile/sysim_ba.dylib'
 
 # gcc 10
 export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+export PATH=$PATH:/home/david/.ghcup/bin
 
 # source autojump
 source /usr/share/autojump/autojump.zsh 2>/dev/null
