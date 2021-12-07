@@ -140,7 +140,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'julials', 'hls' }
+local servers = { 'rust_analyzer', 'julials', 'hls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -152,3 +152,9 @@ end
 
 vim.lsp.set_log_level("debug")
 EOF
+
+" VIM-PENCIL
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd,tex call pencil#init({'wrap': 'soft'})
+augroup END
