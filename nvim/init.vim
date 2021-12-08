@@ -3,6 +3,11 @@
 "    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 ":endif
+
+" map leader to SPACE - needs to come first in order to work properly 
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
 if exists('g:vscode')
   " finish
 else
@@ -13,7 +18,7 @@ else
 
   " FILE BROWSER
   let g:netrw_banner=0                             " disable banner
-  let g:netrw_browse_split=4                      " open in prior window
+  let g:netrw_browse_split=0
   let g:netrw_preview=1
   let g:netrw_altv=1                               " open splits to the right
   let g:netrw_winsize=85                           " size of new window in percent
@@ -58,18 +63,15 @@ let g:vim_markdown_folding_disabled = 1
 set updatetime=300
 
 " key mappings
-nnoremap <SPACE> <Nop>
-let mapleader = " " " map leader to comma
+
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 " leave vmode
 vnoremap <Leader><Leader> <Esc>
 " indent
-map <Tab> >
-imap <Tab> <Esc> >
+nnoremap <Tab> >>
 vmap <Tab> >gv
-map <S-Tab> <
-imap <S-Tab> <Esc> <
+nnoremap <S-Tab> <<
 vmap <S-Tab> <gv
 " next buffer
 nnoremap bn :bNext<CR>

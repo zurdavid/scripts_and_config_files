@@ -4,6 +4,7 @@ let g:NERDSpaceDelims = 1
 
 " AUTO-PAIRS
 let g:AutoPairsCompleteOnlyOnSpace=1
+let g:AutoPairsShortcutToggleMultilineClose=''
 
 " ALE - linter
 nmap <silent> <Leader>ad <Plug>(ale_detail) 
