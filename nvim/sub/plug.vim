@@ -4,6 +4,8 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 " status / tabline
 Plug 'vim-airline/vim-airline'
+" Plug 'nvim-lualine/lualine.nvim'
+Plug 'wfxr/minimap.vim'
 
 " helpers
 Plug 'LunarWatcher/auto-pairs'
@@ -18,7 +20,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
 
 " git 
-" Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive' 
 Plug 'airblade/vim-gitgutter'
 
 " Language server
