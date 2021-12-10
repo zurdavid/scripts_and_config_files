@@ -63,7 +63,7 @@ let g:vim_markdown_folding_disabled = 1
 set updatetime=300
 
 " key mappings
-
+nnoremap q :echo "recording unmapped"<cr> 
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 " leave vmode
@@ -73,6 +73,13 @@ nnoremap <Tab> >>
 vmap <Tab> >gv
 nnoremap <S-Tab> <<
 vmap <S-Tab> <gv
+" move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 " next buffer
 nnoremap bn :bNext<CR>
 nnoremap bp :bprevious<CR>
@@ -94,20 +101,16 @@ nnoremap <Leader><C-a> ggvG
 
 " actions when saving
 " remove trailing whitespace
-autocmd FileType c,cpp,java,tex,julia,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,tex,julia,python,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" python
-let g:python3_host_prog = '~/miniconda3/bin/python'
 
-" imap <F6> <Esc>:w<CR>:!python3 %<CR>
-" nmap <F6> :w<CR>:!python3 %<CR>
+nnoremap <Leader>vv :lua require"julia-run".select()<CR>y:lua require"julia-run".send()<CR>
+nnoremap <Leader>vf :lua require"julia-run".try()<CR>
+onoremap iu :<c-u>lua require"julia-run".select()<CR>
+lua << EOF
 
-" lua << EOF
-" require("lspconfig").julials.setup{}
-" require'lspconfig'.rust_analyzer.setup{}
-" require'lspconfig'.hls.setup{}
-" vim.lsp.set_log_level("debug")
 
-" EOF
+-- vim.lsp.set_log_level("debug")
 
+EOF
 

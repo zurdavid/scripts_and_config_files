@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'wfxr/minimap.vim'
 
 " helpers
+Plug 'ggandor/lightspeed.nvim'
 Plug 'LunarWatcher/auto-pairs'
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
@@ -29,6 +30,7 @@ Plug 'neovim/nvim-lspconfig'
 
 " Highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 " fuzzy search
 " telescope live_grep requires ripgrep 

@@ -6,6 +6,16 @@ let g:NERDSpaceDelims = 1
 let g:AutoPairsCompleteOnlyOnSpace=1
 let g:AutoPairsShortcutToggleMultilineClose=''
 
+" MINIMAP
+" let g:minimap_auto_start=1
+" let g:minimap_auto_start_win_enter=1
+let g:minimap_git_colors=1
+let g:minimap_width=10
+let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf', 'TelescopePrompt']
+let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug', 'TelescopePrompt']
+autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap 
+
+
 " ALE - linter
 nmap <silent> <Leader>ad <Plug>(ale_detail) 
 let g:ale_sign_error = ''
@@ -36,7 +46,8 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "yaml",
     "html",
-    "haskell"
+    "haskell",
+    "python",
   },
 }
 EOF
@@ -45,7 +56,9 @@ EOF
 " fuzzy search
 nnoremap <silent> <C-p> <cmd>Telescope find_files<cr>
 nnoremap <silent> <Leader>ss <cmd>Telescope live_grep<cr>
-nnoremap <silent> \\ <cmd>Telescope buffers<cr>
+nnoremap <silent> <Leader>sg <cmd> Telescope git_status<cr>
+nnoremap <silent> <Leader>sf <cmd> Telescope file_browser<cr>
+nnoremap <silent> <Leader>sb <cmd>Telescope buffers<cr>
 nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
 lua << EOF
 local actions = require('telescope.actions')require('telescope').setup{
@@ -136,12 +149,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'rust_analyzer', 'julials', 'hls' }
+local servers = { 'rust_analyzer', 'julials' } --, 'hls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

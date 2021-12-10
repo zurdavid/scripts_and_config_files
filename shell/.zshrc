@@ -157,7 +157,7 @@ alias xclip='xclip -selection clipboard'
 alias gls='git status'
 alias sz='source ~/.zshrc'  
 alias gitgraph="git log --graph --decorate --all --oneline"
-alias vim=nvim
+alias v=nvim
 alias bajulia='julia --project -t auto --sysimage=precompile/sysim_ba.dylib'
 
 # gcc 10
