@@ -104,9 +104,6 @@ nnoremap <Leader><C-a> ggvG
 autocmd FileType c,cpp,java,tex,julia,python,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
 
 
-nnoremap <Leader>vv :lua require"julia-run".select()<CR>y:lua require"julia-run".send()<CR>
-nnoremap <Leader>vf :lua require"julia-run".try()<CR>
-onoremap iu :<c-u>lua require"julia-run".select()<CR>
 lua << EOF
 
 
