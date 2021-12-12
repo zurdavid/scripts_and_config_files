@@ -9,6 +9,9 @@ nnoremap <SPACE> <Nop>
 let mapleader = " "
 
 if exists('g:vscode')
+  call plug#begin('~/.config/nvim/plugged')
+    Plug 'ggandor/lightspeed.nvim'
+  call plug#end()
   " finish
 else
   source $HOME/.config/nvim/sub/plug.vim          " plugin loader
