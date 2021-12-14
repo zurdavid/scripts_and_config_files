@@ -33,7 +33,7 @@ lua << EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {},
+    disable = {"haskell"},
   },
   indent = {
     enable = false,
@@ -136,7 +136,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<Leader><C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -149,11 +149,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'rust_analyzer', 'julials' } --, 'hls' }
+local servers = { 'rust_analyzer', 'julials', 'hls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -163,6 +164,32 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+
+local cmp = require('cmp')
+
+cmp.setup({
+  mapping = {
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+      if cmp.visible() then
+        local entry = cmp.get_selected_entry()
+	if not entry then
+	  cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+	end
+	cmp.confirm()
+      else
+        fallback()
+      end
+    end, {"i","s","c",}),
+  },
+
+  -- You should specify your *installed* sources.
+  sources = {
+    { name = 'buffer' },
+    { name = 'nvim_lsp' },
+  },
+})
 -- vim.lsp.set_log_level("debug")
 EOF
 

@@ -26,6 +26,11 @@ Plug 'airblade/vim-gitgutter'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Highlight
@@ -39,7 +44,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " other (tpope vim-plug artist)
-" Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-commentary'
 " Plug 'preservim/nerdtree'
