@@ -4,7 +4,7 @@
 "  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 ":endif
 
-" map leader to SPACE - needs to come first in order to work properly 
+" map leader to SPACE - needs to come first in order to work properly
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
@@ -15,9 +15,9 @@ if exists('g:vscode')
   " finish
 else
   source $HOME/.config/nvim/sub/plug.vim          " plugin loader
-  source $HOME/.config/nvim/sub/theme.vim         " theme 
-  source $HOME/.config/nvim/sub/functions.vim     " custom functions 
-  source $HOME/.config/nvim/sub/plugins.vim       " plugin settings 
+  source $HOME/.config/nvim/sub/theme.vim         " theme
+  source $HOME/.config/nvim/sub/functions.vim     " custom functions
+  source $HOME/.config/nvim/sub/plugins.vim       " plugin settings
 
   " FILE BROWSER
   let g:netrw_banner=0                             " disable banner
@@ -27,6 +27,7 @@ else
   let g:netrw_winsize=85                           " size of new window in percent
   let g:netrw_liststyle=3                          " tree view
   "let g:netrw_list_hide=                          " hide stuff
+  autocmd FileType netrw setl bufhidden=wipe
 endif
 
 syntax on
@@ -66,16 +67,16 @@ let g:vim_markdown_folding_disabled = 1
 set updatetime=300
 
 " key mappings
-nnoremap q :echo "recording unmapped"<cr> 
+nnoremap q :echo "recording unmapped"<cr>
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 " leave vmode
 vnoremap <Leader><Leader> <Esc>
 " indent
 nnoremap <Tab> >>
-vmap <Tab> >gv
 nnoremap <S-Tab> <<
-vmap <S-Tab> <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 " move lines
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -104,7 +105,7 @@ nnoremap <Leader><C-a> ggvG
 
 " actions when saving
 " remove trailing whitespace
-autocmd FileType c,cpp,java,tex,julia,python,haskell autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 
 lua << EOF

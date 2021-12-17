@@ -1,6 +1,9 @@
 " NERDComments
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1 
+let g:NERDSpaceDelims = 1
+
+" FUGITIVE
+nnoremap <Leader>gs :G<CR>
 
 " AUTO-PAIRS
 let g:AutoPairsCompleteOnlyOnSpace=1
@@ -13,11 +16,11 @@ let g:minimap_git_colors=1
 let g:minimap_width=10
 let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf', 'TelescopePrompt']
 let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug', 'TelescopePrompt']
-autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap 
+autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap
 
 
 " ALE - linter
-nmap <silent> <Leader>ad <Plug>(ale_detail) 
+nmap <silent> <Leader>ad <Plug>(ale_detail)
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 "let g:ale_list_window_size = 5
@@ -26,7 +29,7 @@ let g:ale_hover_to_floating_preview=1
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 0
 " let g:ale_lint_on_enter = 0 " disable on opening
-
+let g:ale_pattern_options = {'\.tex$': {'ale_enabled': 0}}
 
 " TREESITTER
 lua << EOF
@@ -57,8 +60,8 @@ EOF
 nnoremap <silent> <C-p> <cmd>Telescope find_files<cr>
 nnoremap <silent> <Leader>ss <cmd>Telescope live_grep<cr>
 nnoremap <silent> <Leader>sg <cmd> Telescope git_status<cr>
-nnoremap <silent> <Leader>sf <cmd> Telescope file_browser<cr>
-nnoremap <silent> <Leader>sb <cmd>Telescope buffers<cr>
+nnoremap <silent> <Leader>sf <cmd> Telescope file_browser<cr><ESC>
+nnoremap <silent> <Leader>b <cmd>Telescope buffers<cr><ESC>
 nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
 lua << EOF
 local actions = require('telescope.actions')require('telescope').setup{
@@ -95,7 +98,7 @@ map <Leader>vz :VimuxZoomRunner<CR>
 nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
 
 
-" " coc-nvim 
+" " coc-nvim
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " " Use `[c` and `]c` to navigate diagnostics
@@ -154,7 +157,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'rust_analyzer', 'julials', 'hls' }
+local servers = { 'rust_analyzer', 'rls', 'julials', 'hls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -164,10 +167,29 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+require('lspconfig').texlab.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    texlab = {
+      auxDirectory = './out'
+    }
+  }
+}
 
+------
+-- cmp
+------
 local cmp = require('cmp')
 
 cmp.setup({
+  snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body)
+      end,
+  },
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -184,17 +206,38 @@ cmp.setup({
     end, {"i","s","c",}),
   },
 
-  -- You should specify your *installed* sources.
+  -- specify *installed* sources, order mathers
   sources = {
-    { name = 'buffer' },
+    { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
   },
+})
+
+cmp.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' }
+  }
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+require("luasnip/loaders/from_vscode").load({
+  paths = './plugged/friendly-snippets'
 })
 -- vim.lsp.set_log_level("debug")
 EOF
+
+luafile $HOME/.config/nvim/sub/luasnip.lua
 
 " VIM-PENCIL
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd,tex call pencil#init({'wrap': 'soft'})
 augroup END
+let g:pencil#conceallevel=0
