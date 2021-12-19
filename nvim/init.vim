@@ -11,7 +11,9 @@ let mapleader = " "
 if exists('g:vscode')
   call plug#begin('~/.config/nvim/plugged')
     Plug 'ggandor/lightspeed.nvim'
+    Plug 'preservim/nerdcommenter'
   call plug#end()
+  let g:NERDSpaceDelims = 1
   " finish
 else
   source $HOME/.config/nvim/sub/plug.vim          " plugin loader
@@ -101,7 +103,7 @@ nnoremap <silent> <C-Left> :vertical resize -1<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 " invoke formatter
 nnoremap <Leader><C-I> ggvG3gq<C-o>
-nnoremap <Leader><C-a> ggvG
+nnoremap <Leader><C-a> gg0vG$
 
 " actions when saving
 " remove trailing whitespace
