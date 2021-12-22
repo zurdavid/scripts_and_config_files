@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # neovim
+echo "Linking neovim config files..." 
 rm -f -- $HOME/.config/nvim/init.vim
 rm -rf $HOME/.config/nvim/sub
 rm -rf $HOME/.config/nvim/ftplugin
@@ -7,11 +8,13 @@ ln -s $(pwd)/nvim/init.vim $HOME/.config/nvim
 ln -s $(pwd)/nvim/sub $HOME/.config/nvim
 ln -s $(pwd)/nvim/ftplugin $HOME/.config/nvim
 
-rm -f -- $HOME/.bashrc
-rm -f -- $HOME/.inputrc
-rm -f -- $HOME/.zshrc
-rm -f -- $HOME/.tmux.conf
-ln -s $(pwd)/shell/.bashrc $HOME/.bashrc
-ln -s $(pwd)/shell/.zshrc $HOME/.zshrc
-ln -s $(pwd)/shell/.tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/shell/.inputrc $HOME/.inputrc
+for dotfile in .bashrc .inputrc .zshrc .tmux.conf .gitconfig ; do
+  echo "Linking $dotfile..." 
+  rm -f -- $HOME/$dotfile  
+  ln -s $(pwd)/dotfiles/$dotfile $HOME/$dotfile
+done
+
+# git
+GITTEMPPATH=$HOME/.config/git/template
+mkdir -p $GITTEMPPATH 
+cp $(pwd)/git/HEAD $GITTEMPPATH 
