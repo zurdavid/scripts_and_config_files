@@ -107,7 +107,7 @@ nnoremap <Leader><C-a> gg0vG$
 
 " actions when saving
 " remove trailing whitespace
-autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,tex,julia,python,haskell,vim,latex autocmd BufWritePre <buffer> %s/\s\+$//e
 
 
 lua << EOF
