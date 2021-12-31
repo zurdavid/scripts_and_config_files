@@ -8,11 +8,11 @@ nnoremap <Leader>gs :G<CR>
 " GITGUTTER
 nnoremap <Leader>hl :GitGutterLineHighlightsToggle<CR>
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
-highlight GitGutterChange guifg=#bbbb00 ctermfg=14
+highlight GitGutterChange guifg=#bbbb00 ctermfg=4
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 let g:gitgutter_sign_added = '┃'
 let g:gitgutter_sign_modified = '┃'
-let g:gitgutter_sign_removed = '┃'
+let g:gitgutter_sign_removed = '┃⎯'
 let g:gitgutter_sign_removed_first_line = '┃'
 let g:gitgutter_sign_modified_removed = "┃"
 
@@ -60,7 +60,6 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "yaml",
     "html",
-    "haskell",
     "python",
   },
 }
