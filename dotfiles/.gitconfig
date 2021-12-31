@@ -1,0 +1,7 @@
+[user]
+	email = david.z@sunrise.ch
+	name = zurdavid
+
+[init]
+        templateDir = ~/.config/git/template/
+
