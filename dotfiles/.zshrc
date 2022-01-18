@@ -8,14 +8,19 @@ autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
 zstyle ':vcs_info:*' formats ' %F{4}:%f%F{red} %b%f'
 
-function check_conda() {
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+function check_virtual_env() {
   if [[ -v CONDA_DEFAULT_ENV ]]; then
-    CONDAPROMPT="(%F{4}${PYTHON}%f ${CONDA_DEFAULT_ENV})"
+    VIRTUALENVPROMPT="(%F{4}${PYTHON}%f ${CONDA_DEFAULT_ENV})"
+  elif [[ -n "$VIRTUAL_ENV" ]]; then
+    VIRTUALENVPROMPT="(%F{4}${PYTHON}%f ${VIRTUAL_ENV##*/})"
   else
-    unset CONDAPROMPT
+    unset VIRTUALENVPROMPT
   fi
 }
-precmd_functions+=(check_conda)
+precmd_functions+=(check_virtual_env)
 
 SEP1=$'\uE0C0'
 LEGO=$'\uE0CF'
@@ -34,7 +39,7 @@ else
   PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${SEP1}%f  $MINT  %k%F{12}${SEP1}%f "
   PPROMPT="%F{12} ${LEGO}%f  " 
 fi
-PROMPT='${NEWLINE}$PROMPT_NAME $CONDAPROMPT %F{6}$FOLDER %~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
+PROMPT='${NEWLINE}$PROMPT_NAME $VIRTUALENVPROMPT %F{6}$FOLDER %~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
 # Lines configured by zsh-newuser-install
 unsetopt beep
