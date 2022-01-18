@@ -74,6 +74,7 @@ nnoremap <silent> <Leader>sf <cmd> Telescope file_browser<cr><ESC>
 nnoremap <silent> <Leader>b <cmd>Telescope buffers<cr><ESC>
 nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
 lua << EOF
+require("telescope").load_extension "file_browser"
 local actions = require('telescope.actions')require('telescope').setup{
   defaults = {
     mappings = {
