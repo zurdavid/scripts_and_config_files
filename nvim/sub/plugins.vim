@@ -108,6 +108,9 @@ map <Leader>vz :VimuxZoomRunner<CR>
 nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
 
 
+" VIMSLIME
+let g:slime_target = "tmux"
+
 " " coc-nvim
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

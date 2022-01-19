@@ -16,6 +16,7 @@ Plug 'preservim/nerdcommenter'
 " tmux
 Plug 'preservim/vimux'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'jpalardy/vim-slime'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -60,11 +61,13 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'rust-lang/rust.vim'
 " Latex
 Plug 'lervag/vimtex'
+" Python
+Plug 'hanschen/vim-ipython-cell'
 
 " unused plugins
 " Plug 'kien/rainbow_parentheses.vim'
 " Plug 'ervandew/supertab'
 " Plug 'tjdevries/vlog.nvim'
-Plug 'ThePrimeagen/vim-be-good'
+" Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
