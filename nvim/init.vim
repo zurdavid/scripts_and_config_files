@@ -87,8 +87,8 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 " next buffer
-nnoremap bn :bNext<CR>
-nnoremap bp :bprevious<CR>
+" nnoremap bn :bNext<CR>
+" nnoremap bp :bprevious<CR>
 nnoremap <Leader>pu :tabnext<CR>
 nnoremap <Leader>pd :tabprevious<CR>
 " source init.vim
