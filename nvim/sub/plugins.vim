@@ -70,7 +70,7 @@ EOF
 nnoremap <silent> <C-p> <cmd>Telescope find_files<cr>
 nnoremap <silent> <Leader>ss <cmd>Telescope live_grep<cr>
 nnoremap <silent> <Leader>sg <cmd> Telescope git_status<cr>
-nnoremap <silent> <Leader>sf <cmd> Telescope file_browser<cr><ESC>
+nnoremap <silent> <Leader>sf <cmd> Telescope file_browser hidden=true no_ignore=true<cr><ESC>
 nnoremap <silent> <Leader>b <cmd>Telescope buffers<cr><ESC>
 nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
 lua << EOF
