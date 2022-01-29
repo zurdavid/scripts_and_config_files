@@ -27,6 +27,17 @@ _G.s_tab_complete = function()
     return ""
 end
 
+local luasnip = require("luasnip")
+local s = luasnip.snippet
+local t = luasnip.text_node
+
+luasnip.snippets.haskell = {
+  -- trigger is fn.
+  s("deq", {
+    t("deriving(Eq, Show)"),
+  }),
+}
+
 vim.api.nvim_set_keymap("i", "<C-j>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<C-j>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<C-k>", "v:lua.s_tab_complete()", {expr = true})
