@@ -29,6 +29,8 @@ let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf', 'Telesco
 let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug', 'TelescopePrompt']
 autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap
 
+" Bbye (Buffer Bye) for Vim
+:nnoremap <Leader><Leader>q :Bdelete<CR>
 
 " ALE - linter
 nmap <silent> <Leader>ad <Plug>(ale_detail)

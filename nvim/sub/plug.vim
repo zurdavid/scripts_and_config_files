@@ -12,6 +12,8 @@ Plug 'ggandor/lightspeed.nvim'
 " Plug 'LunarWatcher/auto-pairs'
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
+" lets you savely delete buffers, when using minimap
+Plug 'moll/vim-bbye'
 
 " tmux
 Plug 'preservim/vimux'
