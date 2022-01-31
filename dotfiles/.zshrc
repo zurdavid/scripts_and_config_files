@@ -112,7 +112,6 @@ local paste_widgets=(
 x11-clip-wrap-widgets copy $copy_widgets
 x11-clip-wrap-widgets paste  $paste_widgets
 
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
@@ -130,45 +129,23 @@ zle -N zle-keymap-select
 
 # Use beam shape cursor on startup.
 echo -ne '\e[5 q'
-
 # Use beam shape cursor for each new prompt.
 _fix_cursor() {
    echo -ne '\e[5 q'
 }
-
 precmd_functions+=(_fix_cursor)
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/david/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/david/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/david/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# ahj - remove the default Python environment artifact "(base)" from prompt
-PS1=$(echo "$PS1" | perl -pe 's/^\(base\)\s*//' )
 
 # ALIASES
 alias activate='conda activate'
-alias ds='conda activate ds'
 alias xclip='xclip -selection clipboard'
 alias gls='git status'
 alias sz='source ~/.zshrc'  
 alias gitgraph="git log --graph --decorate --all --oneline"
 alias v=nvim
-alias bajulia='julia --project -t auto --sysimage=precompile/sysim_ba.dylib'
-
-# gcc 10
-export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
-export PATH=$PATH:/home/david/.ghcup/bin
 
 # source autojump
 source /usr/share/autojump/autojump.zsh 2>/dev/null
+
+# Load custom stuff if exists.
+# example in folder others
+[ -f "$HOME/.zshrc_additional" ] && source "$HOME/.zshrc_additional"
