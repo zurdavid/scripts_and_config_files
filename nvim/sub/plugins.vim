@@ -172,7 +172,16 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'rust_analyzer', 'rls', 'julials', 'hls', 'clangd' }
+local servers = {
+--  'rust_analyzer',
+  'rls',
+  'julials',
+  'hls',
+  'clangd',
+  'pyright',
+  'metals',
+}
+
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -181,6 +190,23 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require('lspconfig').pylsp.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    pylsp = {
+      plugins = {
+        flake8 = { enabled = true },
+        pycodestyle= {enabled = false},
+        pyflakes = {enabled=false},
+        mccabe = {enabled=false},
+      },
+    },
+  },
+}
 
 require('lspconfig').texlab.setup{
   on_attach = on_attach,

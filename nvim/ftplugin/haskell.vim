@@ -5,3 +5,6 @@ if !empty(glob('stack.yaml'))
       \   'haskell': [],
       \}
 endif
+
+" add signature -> then use code actions
+nnoremap <Leader>as 0ywO<ESC>pA :: _<ESC>0

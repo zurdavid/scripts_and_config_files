@@ -499,12 +499,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-#
-alias activate='conda activate'
-alias ds='conda activate ds'
 alias xclip='xclip -selection clipboard'
 
-# gcc 10
-export export PATH=/usr/local/gcc-10.2.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/gcc-10.2.0/lib64:$LD_LIBRARY_PATH
+. "$HOME/.cargo/env"

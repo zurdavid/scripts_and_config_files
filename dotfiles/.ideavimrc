@@ -1,0 +1,21 @@
+" map leader to SPACE - needs to come first in order to work properly
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+set clipboard=unnamedplus                       " copy/past to/from clipboard
+set clipboard+=ideaput
+
+inoremap jk <Esc>
+
+nnoremap <TAB> :action EditorIndentLineOrSelection<CR>
+vnoremap <TAB> :action EditorIndentLineOrSelection<CR>
+
+nnoremap <leader>si :source ~/.ideavimrc<CR>
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <C-n> :tabn<CR>
+nnoremap <C-p> :tabp<CR>
+nnoremap <leader>c<leader> :action CommentByLineComment<CR>
+vnoremap <leader>c<leader> :action CommentByLineComment<CR>
+
+nnoremap <leader><leader>r :action Run<CR>
+nnoremap <leader>f :action ReformatCode<CR>
