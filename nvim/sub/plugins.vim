@@ -7,6 +7,8 @@ nnoremap <Leader>gs :G<CR>
 
 " GITGUTTER
 nnoremap <Leader>hl :GitGutterLineHighlightsToggle<CR>
+nmap <LEADER>hn <Plug>(GitGutterNextHunk)
+nmap <LEADER>hN <Plug>(GitGutterPrevHunk)
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=4
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
