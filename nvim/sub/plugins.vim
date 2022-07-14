@@ -27,8 +27,8 @@ let g:AutoPairsShortcutToggleMultilineClose=''
 " let g:minimap_auto_start_win_enter=1
 let g:minimap_git_colors=1
 let g:minimap_width=10
-let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf', 'TelescopePrompt']
-let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug', 'TelescopePrompt']
+let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf']
+let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug']
 autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap
 
 " Bbye (Buffer Bye) for Vim
@@ -116,27 +116,8 @@ nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
 " VIMSLIME
 let g:slime_target = "tmux"
 
-" " coc-nvim
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" " Use `[c` and `]c` to navigate diagnostics
-" nmap <silent> üc <Plug>(coc-diagnostic-prev)
-" nmap <silent> ¨c <Plug>(coc-diagnostic-next)
-" " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
 
-" function! s:show_documentation()
-  " if (index(['vim','help'], &filetype) >= 0)
-    " execute 'h '.expand('<cword>')
-  " else
-    " call CocAction('doHover')
-  " endif
-" endfunction
-
-
+" LSP
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
@@ -273,8 +254,12 @@ cmp.setup.cmdline('/', {
 require("luasnip/loaders/from_vscode").load({
   paths = './plugged/friendly-snippets'
 })
--- vim.lsp.set_log_level("debug")
 EOF
+
+" vim.lsp.set_log_level('debug')
+" if vim.fn.has 'nvim-0.5.1' == 1 then
+  " require('vim.lsp.log').set_format_func(vim.inspect)
+" end
 
 luafile $HOME/.config/nvim/sub/luasnip.lua
 
@@ -284,3 +269,36 @@ augroup pencil
   autocmd FileType markdown,mkd,tex call pencil#init({'wrap': 'soft'})
 augroup END
 let g:pencil#conceallevel=0
+
+
+" Luadev
+map <leader><leader>ll <Plug>(Luadev-RunLine)
+map <leader><leader>lr  <Plug>(Luadev-Run)
+
+lua << EOF
+
+-- AutoSave
+local autosave = require("autosave")
+
+execution_message = function ()
+  return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
+end,
+
+autosave.setup(
+    {
+        enabled = true,
+        -- execution_message = "",
+        events = {"InsertLeave", "TextChanged"},
+        conditions = {
+            exists = true,
+            filename_is_not = {},
+            filetype_is_not = {},
+            modifiable = true
+        },
+        write_all_buffers = false,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 135
+    }
+)
+EOF

@@ -12,6 +12,7 @@ if exists('g:vscode')
   call plug#begin('~/.config/nvim/plugged')
     Plug 'ggandor/lightspeed.nvim'
     Plug 'preservim/nerdcommenter'
+    Plug 'preservim/vim-pencil'
   call plug#end()
   let g:NERDSpaceDelims = 1
   " finish
@@ -108,12 +109,4 @@ nnoremap <Leader><C-a> gg0vG$
 " actions when saving
 " remove trailing whitespace
 autocmd FileType c,cpp,java,tex,julia,python,haskell,vim,latex autocmd BufWritePre <buffer> %s/\s\+$//e
-
-
-lua << EOF
-
-
--- vim.lsp.set_log_level("debug")
-
-EOF
 

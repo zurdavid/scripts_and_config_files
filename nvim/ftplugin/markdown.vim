@@ -1,15 +1,21 @@
 nmap <Leader>so F-la~~<ESC>A~~<ESC>
 nmap <Leader><Leader>c lbi`jkea`jk " enclose word in ``
 
-" build notes in Vimux
-command! BuildNotes :call BuildNotes()
-function! BuildNotes()
-  let b:projectroot = getcwd()
-  if b:projectroot == '~/Documents/notes'
-    call VimuxRunCommand('./compile.sh ' . @%)
-  endif
-endfunction
-nnoremap <buffer> <Leader>rt :BuildNotes<CR>
+lua << EOF
+local function build_notes()
+  if vim.fn.getcwd() == '/home/david/Documents/notes' then
+    buf_name = vim.api.nvim_buf_get_name(0)
+    vim.api.nvim_command('VimuxRunCommand "./compile.sh ' .. buf_name .. '"')
+  end
+end
+vim.api.nvim_create_autocmd({ "BufWritePost" }, { callback = build_notes })
 
-autocmd BufWritePost <buffer> BuildNotes
+-- AutoSave
+local autosave = require("autosave")
 
+autosave.setup(
+    {
+        events = {"InsertLeave", "TextChanged", "TextChangedI"},
+    }
+)
+EOF

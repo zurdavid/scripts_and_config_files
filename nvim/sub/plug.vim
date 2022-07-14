@@ -6,14 +6,15 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 " Plug 'nvim-lualine/lualine.nvim'
 Plug 'wfxr/minimap.vim'
+" lets you savely delete buffers, when using minimap
+Plug 'moll/vim-bbye'
 
 " helpers
 Plug 'ggandor/lightspeed.nvim'
+Plug 'Pocco81/AutoSave.nvim'
 " Plug 'LunarWatcher/auto-pairs'
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
-" lets you savely delete buffers, when using minimap
-Plug 'moll/vim-bbye'
 
 " tmux
 Plug 'preservim/vimux'
@@ -37,7 +38,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Asynchronous Lint Engine
-Plug 'dense-analysis/ale' ", { 'on':  'ALEToggle' }
+Plug 'dense-analysis/ale', { 'on':  'ALEDisable' }
 
 " Highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -66,6 +67,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'lervag/vimtex'
 " Python
 Plug 'hanschen/vim-ipython-cell'
+
+" lua plugin development
+Plug 'bfredl/nvim-luadev'
 
 " unused plugins
 " Plug 'kien/rainbow_parentheses.vim'

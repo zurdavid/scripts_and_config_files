@@ -31,12 +31,20 @@ local luasnip = require("luasnip")
 local s = luasnip.snippet
 local t = luasnip.text_node
 
-luasnip.snippets.haskell = {
+luasnip.add_snippets("haskell", {
   -- trigger is fn.
   s("deq", {
     t("deriving(Eq, Show)"),
   }),
-}
+})
+
+luasnip.add_snippets("cpp", {
+  -- trigger is fn.
+  s("fp", {
+    t("fmt::print("),
+  }),
+})
+
 
 vim.api.nvim_set_keymap("i", "<C-j>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<C-j>", "v:lua.tab_complete()", {expr = true})

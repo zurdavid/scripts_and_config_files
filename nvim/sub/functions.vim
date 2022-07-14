@@ -30,3 +30,22 @@ endfunction
 autocmd FileType haskell nnoremap <buffer> <Leader>rt :HaskellTest<CR>
 
 
+" cargo using Vimux
+command! CargoTest :call CargoTest()
+function! CargoTest()
+  call VimuxRunCommand('cargo test')
+endfunction
+autocmd FileType rust nnoremap <buffer> <Leader>rt :CargoTest<CR>
+
+command! CargoRun :call CargoRun()
+function! CargoRun()
+  call VimuxRunCommand('cargo run')
+endfunction
+autocmd FileType rust nnoremap <buffer> <Leader>rr :CargoRun<CR>
+
+" cmake using Vimux
+command! CMakeBuild :call CMakeBuild()
+function! CMakeBuild()
+  call VimuxRunCommand('cmake --build build')
+endfunction
+autocmd FileType cpp nnoremap <buffer> <Leader>rb :w<CR>:CMakeBuild<CR>
