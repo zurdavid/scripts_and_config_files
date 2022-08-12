@@ -15,7 +15,6 @@ local autosave = require("autosave")
 
 autosave.setup(
     {
-        events = {"InsertLeave", "TextChanged", "TextChangedI"},
-    }
+        events = {"InsertLeave", "TextChanged"}, -- "TextChangedI"},
 )
 EOF
