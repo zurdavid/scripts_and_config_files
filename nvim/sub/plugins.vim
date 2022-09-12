@@ -278,7 +278,7 @@ map <leader><leader>lr  <Plug>(Luadev-Run)
 lua << EOF
 
 -- AutoSave
-local autosave = require("autosave")
+local autosave = require("auto-save")
 
 execution_message = function ()
   return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")

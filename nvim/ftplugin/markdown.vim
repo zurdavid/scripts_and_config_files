@@ -10,8 +10,8 @@ local function build_notes()
 end
 vim.api.nvim_create_autocmd({ "BufWritePost" }, { callback = build_notes })
 
--- AutoSave
-local autosave = require("autosave")
+-- auto-save
+local autosave = require("auto-save")
 
 autosave.setup(
     {

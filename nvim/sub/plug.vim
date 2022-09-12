@@ -11,7 +11,7 @@ Plug 'moll/vim-bbye'
 
 " helpers
 Plug 'ggandor/lightspeed.nvim'
-Plug 'Pocco81/AutoSave.nvim'
+Plug 'pocco81/auto-save.nvim'
 " Plug 'LunarWatcher/auto-pairs'
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
