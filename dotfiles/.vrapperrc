@@ -1,0 +1,39 @@
+set ignorecase                                  " needed by j
+set smartcase                                   " ignore lower case when searching
+
+set clipboard=unnamedplus                       " copy/past to/from clipboard
+
+inoremap jk <Esc>
+tnoremap jk <C-\><C-n>
+
+" indent
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+
+" define an eclipse action: 
+" find references to object under cursor
+eclipseaction findref org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+
+" getter and setter
+eclipseaction getset org.eclipse.jdt.ui.edit.text.java.create.getter.setter
+nnoremap <Space>sg :getset<CR>
+
+eclipseaction format org.eclipse.jdt.ui.edit.text.java.format
+nnoremap <Space>f :format<CR>
+
+eclipseaction tooltip org.eclipse.ui.edit.text.showInformation
+" mapped in eclipse
+
+eclipseaction toggle_comment org.eclipse.jdt.ui.edit.text.java.toggle.comment
+nnoremap <Space>c<Space> :toggle_comment<CR>

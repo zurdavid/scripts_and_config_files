@@ -18,7 +18,7 @@ then
   echo "git clone tmux"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
-for dotfile in .bashrc .inputrc .zshrc .tmux.conf .gitconfig ; do
+for dotfile in .bashrc .inputrc .zshrc .tmux.conf .gitconfig .vrapperrc ; do
   echo "Linking $dotfile..." 
   rm -f -- $HOME/$dotfile  
   ln -s $(pwd)/dotfiles/$dotfile $HOME/$dotfile
