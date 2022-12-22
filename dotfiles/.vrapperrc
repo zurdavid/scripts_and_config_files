@@ -1,8 +1,8 @@
 set ignorecase                                  " needed by j
 set smartcase                                   " ignore lower case when searching
 
-set clipboard=unnamedplus                       " copy/past to/from clipboard
-
+set clipboard=unnamed                           " copy/past to/from clipboard
+Using
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 
@@ -24,6 +24,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " define an eclipse action: 
 " find references to object under cursor
 eclipseaction findref org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+nnoremap gr :findref
 
 " getter and setter
 eclipseaction getset org.eclipse.jdt.ui.edit.text.java.create.getter.setter
@@ -37,3 +38,16 @@ eclipseaction tooltip org.eclipse.ui.edit.text.showInformation
 
 eclipseaction toggle_comment org.eclipse.jdt.ui.edit.text.java.toggle.comment
 nnoremap <Space>c<Space> :toggle_comment<CR>
+
+eclipseaction refactor_rename org.eclipse.jdt.ui.edit.text.java.rename.element
+nnoremap <Space>rn :refactor_rename<CR>ciw
+
+" search references in project
+" eclipseaction find_references org.eclipse.jdt.ui.edit.text.java.search.references.in.project */
+ nnoremap gr :find_references */
+
+eclipseaction open_hierarchy org.eclipse.jdt.ui.edit.text.java.open.hierarchy
+nnoremap gh :open_hierarchy
+
+eclipseaction call_hierarchy org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy
+nnoremap gc :call_hierarchy<cr>
