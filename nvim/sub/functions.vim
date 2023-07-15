@@ -35,13 +35,13 @@ command! CargoTest :call CargoTest()
 function! CargoTest()
   call VimuxRunCommand('cargo test')
 endfunction
-autocmd FileType rust nnoremap <buffer> <Leader>rt :CargoTest<CR>
+autocmd FileType rust nnoremap <buffer> <Leader>jk :CargoTest<CR>
 
 command! CargoRun :call CargoRun()
 function! CargoRun()
   call VimuxRunCommand('cargo run')
 endfunction
-autocmd FileType rust nnoremap <buffer> <Leader>rr :CargoRun<CR>
+autocmd FileType rust nnoremap <buffer> <Leader>jf :CargoRun<CR>
 
 " cmake using Vimux
 command! CMakeBuild :call CMakeBuild()

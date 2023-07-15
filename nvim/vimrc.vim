@@ -15,6 +15,14 @@ if exists('g:vscode')
     Plug 'preservim/vim-pencil'
   call plug#end()
   let g:NERDSpaceDelims = 1
+
+  " VIM-PENCIL
+  augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd,tex call pencil#init({'wrap': 'soft'})
+  augroup END
+  let g:pencil#conceallevel=0
+
   " finish
 else
   source $HOME/.config/nvim/sub/plug.vim          " plugin loader
@@ -73,8 +81,12 @@ set updatetime=300
 nnoremap q :echo "recording unmapped"<cr>
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
+" delete into the void and paste register
+xnoremap <leader>p "_dP
 " leave vmode
 vnoremap <Leader><Leader> <Esc>
+" remap <tab> before overriding
+nnoremap <leader><c-o> <tab>
 " indent
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -88,8 +100,8 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 " next buffer
-" nnoremap bn :bNext<CR>
-" nnoremap bp :bprevious<CR>
+nnoremap <Space>pp :bNext<CR>
+nnoremap <Space>po :bprevious<CR>
 nnoremap <Leader>pu :tabnext<CR>
 nnoremap <Leader>pd :tabprevious<CR>
 " source init.vim
@@ -105,6 +117,9 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 " invoke formatter
 nnoremap <Leader><C-I> ggvG3gq<C-o>
 nnoremap <Leader><C-a> gg0vG$
+
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+nnoremap <Leader>ws :set list!<CR>
 
 " actions when saving
 " remove trailing whitespace

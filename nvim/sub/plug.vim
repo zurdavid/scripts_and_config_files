@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 " color schemes
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
+Plug 'doums/darcula'
 " status / tabline
 Plug 'vim-airline/vim-airline'
 " Plug 'nvim-lualine/lualine.nvim'
@@ -12,7 +13,8 @@ Plug 'moll/vim-bbye'
 " helpers
 Plug 'ggandor/lightspeed.nvim'
 Plug 'pocco81/auto-save.nvim'
-" Plug 'LunarWatcher/auto-pairs'
+Plug 'windwp/nvim-autopairs'
+
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
 
@@ -63,10 +65,13 @@ Plug 'plasticboy/vim-markdown'
 Plug 'JuliaEditorSupport/julia-vim'
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 " Latex
 Plug 'lervag/vimtex'
 " Python
 Plug 'hanschen/vim-ipython-cell'
+" Java
+Plug 'mfussenegger/nvim-jdtls'
 
 " lua plugin development
 Plug 'bfredl/nvim-luadev'

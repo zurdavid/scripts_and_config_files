@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # neovim
 echo "Linking neovim config files..." 
-rm -f -- $HOME/.config/nvim/init.vim
+rm -f -- $HOME/.config/nvim/vimrc.vim
+rm -f -- $HOME/.config/nvim/init.lua
 rm -rf $HOME/.config/nvim/sub
 rm -rf $HOME/.config/nvim/ftplugin
 mkdir $HOME/.config/nvim -p
-ln -s $(pwd)/nvim/init.vim $HOME/.config/nvim
+ln -s $(pwd)/nvim/init.lua $HOME/.config/nvim
+ln -s $(pwd)/nvim/vimrc.vim $HOME/.config/nvim
 ln -s $(pwd)/nvim/sub $HOME/.config/nvim
 ln -s $(pwd)/nvim/ftplugin $HOME/.config/nvim
 

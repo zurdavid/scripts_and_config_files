@@ -15,7 +15,6 @@ function check_isnumber {
 # parameter 1: number
 # parameter 2: upper bound 
 function check_inrange {
-  echo $2
   if [ "$1" -lt 0 ] || [ "$1" -ge "$2" ]; then
     echo "Number out of range. Bye"
     exit 1
@@ -29,7 +28,7 @@ for w in "$@"; do
 done
 i=0
 # find files and save results to array
-mapfile -t res < <(find ~/calibre -type f -iname $query) # 
+mapfile -t res < <(find ~/calibre -type f -iname "$query")
 
 # print enumerated results 
 echo "Results:"

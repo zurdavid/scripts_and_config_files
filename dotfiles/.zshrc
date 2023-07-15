@@ -22,7 +22,12 @@ function check_virtual_env() {
 }
 precmd_functions+=(check_virtual_env)
 
-SEP1=$'\uE0C0'
+CIRCLE=$'\uE0B4'
+USER=$'\uF2BE'
+FLAME=$'\uE0C0'
+SEP1=$CIRCLE
+ARROW=$'\uEA9C'
+# ARROW=$'\uF553'
 LEGO=$'\uE0CF'
 PYTHON=$'\uE235'
 MINT=$'\uF30E'
@@ -35,10 +40,10 @@ setopt prompt_subst
 #SIMPLE_PROMPT=true
 if [[ -v SIMPLE_PROMPT ]];then
   PROMPT_NAME='%n@%m'
-  PPROMPT='%B%F{12} ~>%f%b ' 
+  PPROMPT="%B%F{12} ${ARROW}%f%b "
 else
-  PROMPT_NAME="%K{4} %n %k%K{12}%F{4}${SEP1}%f  $MANJARO  %k%F{12}${SEP1}%f "
-  PPROMPT="%F{12} ${LEGO}%f  " 
+  PROMPT_NAME="%K{6} %n %k%K{4}%F{6}${SEP1}%f $MANJARO  %k%F{4}${SEP1}%f "
+  PPROMPT="%F{4} %B${ARROW}%b%f " 
 fi
 PROMPT='${NEWLINE}$PROMPT_NAME $VIRTUALENVPROMPT %F{6}$FOLDER %~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
@@ -143,6 +148,7 @@ alias gls='git status'
 alias sz='source ~/.zshrc'  
 alias gitgraph="git log --graph --decorate --all --oneline"
 alias v=nvim
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}"'
 
 # source autojump
 source /usr/share/autojump/autojump.zsh 2>/dev/null
@@ -150,3 +156,7 @@ source /usr/share/autojump/autojump.zsh 2>/dev/null
 # Load custom stuff if exists.
 # example in folder others
 [ -f "$HOME/.zshrc_additional" ] && source "$HOME/.zshrc_additional"
+
+# export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
