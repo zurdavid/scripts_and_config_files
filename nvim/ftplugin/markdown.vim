@@ -1,5 +1,5 @@
 nmap <Leader>so F-la~~<ESC>A~~<ESC>
-nmap <Leader><Leader>c lbi`jkea`jk " enclose word in ``
+nmap <Leader><Leader>c lBi`jkEa`jk " enclose word in ``
 
 lua << EOF
 local function build_notes()

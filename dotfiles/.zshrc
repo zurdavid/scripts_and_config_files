@@ -6,7 +6,12 @@ export EDITOR=nvim
 # git (version control systems)
 autoload -Uz vcs_info
 precmd () { vcs_info } # always load before displaying prompt
-zstyle ':vcs_info:*' formats ' %F{4}:%f%F{red} %b%f'
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+
+zstyle ':vcs_info:git:*' formats ' %F{4}:%f%F{red}%b%u%c%f'
 
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -22,6 +27,7 @@ function check_virtual_env() {
 }
 precmd_functions+=(check_virtual_env)
 
+USER=$'\uF2BE'
 CIRCLE=$'\uE0B4'
 USER=$'\uF2BE'
 FLAME=$'\uE0C0'
@@ -30,6 +36,7 @@ ARROW=$'\uEA9C'
 # ARROW=$'\uF553'
 LEGO=$'\uE0CF'
 PYTHON=$'\uE235'
+FEDORA=$'\uF30A'
 MINT=$'\uF30E'
 MANJARO=$'\uF312'
 FOLDER=$'\uE5FE'

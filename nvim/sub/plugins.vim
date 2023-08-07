@@ -25,7 +25,7 @@ let g:minimap_git_colors=1
 let g:minimap_width=10
 let g:minimap_block_filetypes=['fugitive', 'nerdtree', 'tagbar', 'fzf']
 let g:minimap_close_filetypes=['startify', 'netrw', 'vim-plug']
-autocmd FileType c,cpp,java,tex,julia,python,haskell,vim autocmd BufEnter <buffer> Minimap
+autocmd FileType c,cpp,java,tex,julia,python,haskell,vim,rust autocmd BufEnter <buffer> Minimap
 
 " Bbye (Buffer Bye) for Vim
 :nnoremap <Leader><Leader>q :Bdelete<CR>

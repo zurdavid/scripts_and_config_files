@@ -3,8 +3,11 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'doums/darcula'
+Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+Plug 'sainnhe/gruvbox-material'
 " status / tabline
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
 " Plug 'nvim-lualine/lualine.nvim'
 Plug 'wfxr/minimap.vim'
 " lets you savely delete buffers, when using minimap
@@ -29,6 +32,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp_extensions.nvim'
 " LSP auto completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

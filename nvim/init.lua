@@ -5,6 +5,10 @@ vim.cmd.source(vimrc)
 -- lsp debug
 -- lsp.set_log_level("DEBUG")
 
+if vim.fn.exists("g:vscode") ~= 0 then 
+    return;
+end 
+
 -- NVIM-AUTOPAIRS
 require("nvim-autopairs").setup {}
 
@@ -18,7 +22,7 @@ autosave.setup(
           local fn = vim.fn
           local utils = require("auto-save.utils.data")
           if fn.getbufvar(buf, "&modifiable") == 1 and
-            utils.not_in(fn.getbufvar(buf, "&filetype"), {"rust"}) then
+            utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
             return true -- met condition(s), can save
           end
           return false -- can't save
@@ -112,6 +116,12 @@ require('lspconfig').texlab.setup{
   }
 }
 
+-- not working
+local function enable_inlay_hints() 
+  require('lsp_extensions').inlay_hints{ enabled = {"TypeHint", "ChainingHint", "ParameterHint"}, only_current_line = true } 
+end
+vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, { pattern = {'*.rs'}, callback = enable_inlay_hints }) 
+
 ------
 -- cmp
 ------
@@ -125,6 +135,8 @@ cmp.setup({
   },
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
       if cmp.visible() then
@@ -198,3 +210,54 @@ local actions = require('telescope.actions')require('telescope').setup{
   }
 }
 
+-- rust tools
+local opts = {
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+  tools = { -- rust-tools options
+
+       -- These apply to the default RustSetInlayHints command
+    inlay_hints = {
+      -- automatically set inlay hints (type hints)
+      -- default: true
+      auto = true,
+
+      -- Only show inlay hints for the current line
+      only_current_line = false,
+
+      -- whether to show parameter hints with the inlay hints or not
+      -- default: true
+      show_parameter_hints = true,
+
+      -- prefix for parameter hints
+      -- default: "<-"
+      parameter_hints_prefix = "<- ",
+
+      -- prefix for all the other hints (type, chaining)
+      -- default: "=>"
+      other_hints_prefix = "=> ",
+
+      -- whether to align to the length of the longest line in the file
+      max_len_align = false,
+
+      -- padding from the left if max_len_align is true
+      max_len_align_padding = 1,
+
+      -- whether to align to the extreme right or not
+      right_align = false,
+
+      -- padding from the right if right_align is true
+      right_align_padding = 7,
+
+      -- The color of the hints
+      highlight = "IncSearch", -- DiagnosticWarn
+    },
+  }
+}
