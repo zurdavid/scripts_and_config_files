@@ -1,91 +1,68 @@
-#Enable colors
-autoload -U colors && colors
-
-export EDITOR=nvim
-
-# git (version control systems)
-autoload -Uz vcs_info
-precmd () { vcs_info } # always load before displaying prompt
-
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-
-zstyle ':vcs_info:git:*' formats ' %F{4}:%f%F{red}%b%u%c%f'
-
-# disable the default virtualenv prompt change
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-function check_virtual_env() {
-  if [[ -v CONDA_DEFAULT_ENV ]]; then
-    VIRTUALENVPROMPT="(%F{4}${PYTHON}%f ${CONDA_DEFAULT_ENV})"
-  elif [[ -n "$VIRTUAL_ENV" ]]; then
-    VIRTUALENVPROMPT="(%F{4}${PYTHON}%f ${VIRTUAL_ENV##*/})"
-  else
-    unset VIRTUALENVPROMPT
-  fi
-}
-precmd_functions+=(check_virtual_env)
-
-USER=$'\uF2BE'
-CIRCLE=$'\uE0B4'
-USER=$'\uF2BE'
-FLAME=$'\uE0C0'
-SEP1=$CIRCLE
-ARROW=$'\uEA9C'
-# ARROW=$'\uF553'
-LEGO=$'\uE0CF'
-PYTHON=$'\uE235'
-FEDORA=$'\uF30A'
-MINT=$'\uF30E'
-MANJARO=$'\uF312'
-FOLDER=$'\uE5FE'
-NEWLINE=$'\n'
-
-# PROMPT
-setopt prompt_subst
-#SIMPLE_PROMPT=true
-if [[ -v SIMPLE_PROMPT ]];then
-  PROMPT_NAME='%n@%m'
-  PPROMPT="%B%F{12} ${ARROW}%f%b "
-else
-  PROMPT_NAME="%K{6} %n %k%K{4}%F{6}${SEP1}%f $MANJARO  %k%F{4}${SEP1}%f "
-  PPROMPT="%F{4} %B${ARROW}%b%f " 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-PROMPT='${NEWLINE}$PROMPT_NAME $VIRTUALENVPROMPT %F{6}$FOLDER %~%f $vcs_info_msg_0_ ${NEWLINE} ${PPROMPT}'
 
-# Lines configured by zsh-newuser-install
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/david/.zshrc'
+# package manger zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+if [ ! -d "$ZINIT_HOME" ]; then
+  echo "Installing zinit"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# add powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+################################################################################
+# Plugins
+################################################################################
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# load completions
 autoload -U compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' menu select
-# stack autocomplete
-compinit
-# End of lines added by compinstall
-autoload -U +X bashcompinit && bashcompinit
-# stack autocomplete
-if command -v stack &> /dev/null; then
-  eval "$(stack --bash-completion-script stack)"
-fi
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+################################################################################
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# VIM-Mode
+bindkey -v
 
 # key bindings
 bindkey -M viins 'jk' vi-cmd-mode
+bindkey '^f' autosuggest-accept
+bindkey '^e' autosuggest-execute
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
+export EDITOR=nvim
 
 # USE CLIPBOARD in VI-MODE
 function x11-clip-wrap-widgets() {
@@ -149,21 +126,50 @@ _fix_cursor() {
 precmd_functions+=(_fix_cursor)
 
 # ALIASES
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# ALIASES (custom)
 alias activate='conda activate'
 alias xclip='xclip -selection clipboard'
 alias gls='git status'
 alias sz='source ~/.zshrc'  
 alias gitgraph="git log --graph --decorate --all --oneline"
 alias v=nvim
+alias vl=nvim -u ~/Repos/scripts_and_config_files/dotfiles/large-file.vim
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}"'
+alias nts='cd ~/Documents/notes && v .'
+
+# fzf
+eval "$(fzf --zsh)"
+export CONFIGURATION="--search-path $HOME/coding --search-path $HOME/Hagen --search-path $HOME/Documents --search-path $HOME/IdeaProjects"
+alias sd="cd ~ && cd \$(fd --type d $CONFIGURATION | fzf)"
 
 # source autojump
 source /usr/share/autojump/autojump.zsh 2>/dev/null
 
-# Load custom stuff if exists.
-# example in folder others
-[ -f "$HOME/.zshrc_additional" ] && source "$HOME/.zshrc_additional"
+# search in pwd and parent directories for a venv and activate it
+pyenv(){
+  goback="../"
+  dir=""
 
-# export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  for i in 1 2 3 4 5; do
+    find="$(ls -l $dir | grep venv)"
+    if [ -n "$find" ]; then
+      # echo "venv found"
+      source "$(echo $dir)venv/bin/activate"
+      break
+    else
+      # echo "venv not found"
+      dir="$goback$dir"
+      fi
+  done
+}
+
