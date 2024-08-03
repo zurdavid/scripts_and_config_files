@@ -28,6 +28,8 @@ vnoremap <leader>c<leader> :action CommentByLineComment<CR>
 nnoremap <leader><leader>r :action Run<CR>
 nnoremap <leader>jk :action Run<CR>
 nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>o :action
+nnoremap <leader><C-n> :action NewClass<CR>
 
 nnoremap <leader>e :action ShowErrorDescription<CR>
 

@@ -1,5 +1,5 @@
 " activate VS code color scheme
-colorscheme codedark
+" colorscheme codedark
 " let g:airline_theme = 'codedark'
 " let g:airline_powerline_fonts=1
 
@@ -19,7 +19,17 @@ set background=dark
 " colorscheme gruvbox-baby
 " colorscheme gruvbox-material
 
-" colorscheme arctic
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+" For better performance
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_enable_italic = 1
+colorscheme gruvbox-material
 
 " transparent background
 " set termguicolors

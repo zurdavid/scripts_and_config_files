@@ -28,7 +28,7 @@ for w in "$@"; do
 done
 i=0
 # find files and save results to array
-mapfile -t res < <(find ~/calibre -type f -iname "$query")
+mapfile -t res < <(find -H ~/calibre -type f -iname "$query")
 
 # print enumerated results 
 echo "Results:"

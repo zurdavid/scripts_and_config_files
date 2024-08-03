@@ -78,7 +78,6 @@ let g:vim_markdown_folding_disabled = 1
 set updatetime=300
 
 " key mappings
-nnoremap q :echo "recording unmapped"<cr>
 inoremap jk <Esc>
 tnoremap jk <C-\><C-n>
 " delete into the void and paste register
@@ -123,5 +122,5 @@ nnoremap <Leader>ws :set list!<CR>
 
 " actions when saving
 " remove trailing whitespace
-autocmd FileType c,cpp,java,tex,julia,python,haskell,vim,latex autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,tex,julia,python,haskell,rust,vim,latex autocmd BufWritePre <buffer> %s/\s\+$//e
 

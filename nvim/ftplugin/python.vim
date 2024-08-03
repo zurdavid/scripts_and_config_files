@@ -11,9 +11,13 @@ let g:python3_host_prog = '~/Apps/miniforge3/envs/ml/bin/python'
 " ipython
 " probably ipython-cells
 
-nnoremap <Leader>jjk :IPythonCellExecuteCellVerboseJump<cr>
+nnoremap <Leader>kk :IPythonCellExecuteCellVerboseJump<cr>
 nnoremap <Leader>jk :IPythonCellExecuteCellVerbose<cr>
 nnoremap <Leader>vo :IPythonCellInsertBelow<cr>
 nnoremap <Leader>vO :IPythonCellInsertAbove<cr>
 nnoremap <Leader>vn :IPythonCellNextCell<cr>
 nnoremap <Leader>vN :IPythonCellPrevCell<cr>
+nnoremap <Leader>cl :IPythonCellClear<cr>
+
+nnoremap <Leader><Leader>j :IPythonCellNextCell<cr>
+nnoremap <Leader><Leader>k :IPythonCellPrevCell<cr>
