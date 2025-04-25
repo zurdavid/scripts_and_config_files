@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'doums/darcula'
-Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'sainnhe/gruvbox-material'
 " status / tabline
 Plug 'itchyny/lightline.vim'
@@ -20,6 +19,11 @@ Plug 'windwp/nvim-autopairs'
 
 Plug 'preservim/vim-pencil'
 Plug 'preservim/nerdcommenter'
+
+" dadbod
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
 
 " tmux
 Plug 'preservim/vimux'

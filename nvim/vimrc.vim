@@ -61,7 +61,8 @@ set clipboard=unnamedplus                       " copy/past to/from clipboard
 " set wildmenu
 
 " spell checking
-set nospell spelllang=de_de
+set nospell spelllang=en_en
+set nospell spelllang=de_ch
 nnoremap <silent> <F6> :set invspell<cr>
 inoremap <silent> <F6> <C-O>:set invspell<cr>
 "set spell spelllang=de_de,en_us
@@ -124,3 +125,5 @@ nnoremap <Leader>ws :set list!<CR>
 " remove trailing whitespace
 autocmd FileType c,cpp,java,tex,julia,python,haskell,rust,vim,latex autocmd BufWritePre <buffer> %s/\s\+$//e
 
+" hrsh7th/nvim-cmp
+autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
