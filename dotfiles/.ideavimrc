@@ -2,6 +2,8 @@
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
+Plug 'justinmk/vim-sneak'
+
 set clipboard=unnamedplus                       " copy/past to/from clipboard
 set clipboard+=ideaput
 
@@ -18,7 +20,7 @@ vnoremap <TAB> :action EditorIndentLineOrSelection<CR>
 
 nnoremap <leader>ln :set invrelativenumber<CR>
 
-nnoremap <leader>si :source ~/.ideavimrc<CR>
+nnoremap <leader>sz :source ~/.ideavimrc<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <C-n> :tabn<CR>
 nnoremap <C-p> :tabp<CR>
@@ -28,8 +30,9 @@ vnoremap <leader>c<leader> :action CommentByLineComment<CR>
 nnoremap <leader><leader>r :action Run<CR>
 nnoremap <leader>jk :action Run<CR>
 nnoremap <leader>f :action ReformatCode<CR>
-nnoremap <leader>o :action
-nnoremap <leader><C-n> :action NewClass<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+
+nnoremap <leader>n :action NewClass<CR>
 
 nnoremap <leader>e :action ShowErrorDescription<CR>
 
