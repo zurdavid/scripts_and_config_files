@@ -1,0 +1,41 @@
+@theme "gruvbox-dark-soft"
+
+* {
+      font: "Hack Nerd Font 14";
+}
+
+window {
+    location: center;
+    width: 800px;
+    border: 3px;
+    border-radius: 5px;
+}
+
+listview { lines: 8; }
+
+mainbox {
+	children: [inputbar, message, listview];
+	spacing: 10px;
+	padding: 10px 0;
+}
+
+button, textbox {
+	//background-color: @base03;
+	padding: 10px 0;
+}
+
+element {
+  orientation: horizontal;
+  children: [ element-icon, element-text  ];
+  spacing: 20px;
+  margin: 4px;
+}
+
+element-text {
+  vertical-align: 0.5;
+}
+
+element-icon {
+    size: 2em;
+}
+

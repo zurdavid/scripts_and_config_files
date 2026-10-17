@@ -1,0 +1,46 @@
+[theme]
+theme = "semi-native"
+
+[icons]
+#icons = "awesome6"
+icons = "material-nf"
+[icons.overrides]
+
+#[[block]]
+#block = "disk_space"
+#path = "/"
+#info_type = "available"
+#interval = 60
+#warning = 20.0
+#alert = 10.0
+#format = " $icon $available "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used_percents.eng(w:2) "
+interval = 5
+
+[[block]]
+block = "cpu"
+interval = 2
+format = " $icon $utilization "
+
+[[block]]
+block = "sound"
+format = " $icon $volume "
+
+#[[block]]
+#block = "net"
+#format = " $icon $speed_down.eng(prefix:K) "
+#interval = 5
+
+[[block]]
+block = "battery"
+if_command = "ls /sys/class/power_supply/BAT*"
+format = " $icon $percentage "
+missing_format = ""
+
+[[block]]
+block = "time"
+interval = 30
+format = "$icon $timestamp.datetime(f:'%a %d %b %H:%M') "

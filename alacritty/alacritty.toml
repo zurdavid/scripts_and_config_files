@@ -1,0 +1,33 @@
+[window]
+opacity=1.0
+
+[window.padding]
+x=2
+y=2
+
+[window.dimensions]
+columns=120
+lines=46
+
+[window.position]
+x=900
+y=180
+
+[font]
+size = 13.5
+[font.normal]
+family = "Hack Nerd Font"
+style  = "Regular"
+
+[general]
+import = [ "~/.config/alacritty/mythemes/my.toml" ]
+# import = [ "~/.config/alacritty/themes/gruvbox_material_medium_dark.toml" ]
+ #import = [ "~/.config/alacritty/themes/citylights.toml" ]
+ #import = [ "~/.config/alacritty/themes/flexoki.toml" ]
+ #import = [ "~/.config/alacritty/themes/remedy_dark.toml" ]
+
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

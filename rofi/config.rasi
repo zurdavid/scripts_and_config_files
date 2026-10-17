@@ -1,0 +1,8 @@
+configuration {
+  modes: "drun,run,window";
+  drun-match-fields: "name";
+  sort: true;
+  sorting-method: "fzf";
+}
+
+@theme "./mytheme.rasi"
