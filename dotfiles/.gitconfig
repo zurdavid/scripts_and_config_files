@@ -1,7 +1,26 @@
 [user]
-	email = david.z@sunrise.ch
-	name = zurdavid
+    email = david.z@sunrise.ch
+    name = zurdavid
 
 [init]
-        templateDir = ~/.config/git/template/
+    templateDir = ~/.config/git/template/
 
+[include]
+    path = ~/Repos/scripts_and_config_files/git/themes.gitconfig
+
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    side-by-side = true
+    navigate = true    # use n and N to move between diff sections
+    line-numbers = true
+  features = gruvmax-fang
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+
+[alias]
+    last-change = "!f() { git log -1 --date=format:\"%y-%m-%d %H:%M\" --pretty=format:\"%cd | %cn | %s | %h \n\" -- \"$1\"| sed \"s+^+$1 | +\"; }; f"
